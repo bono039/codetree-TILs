@@ -30,7 +30,7 @@ public class Main {
         }
 
         int score = 0;
-        for(int i = 1 ; i < max - K ; i++) {
+        for(int i = 1 ; i <= max - K ; i++) {
             int tmp = 0;
             for(int j = i ; j <= i + K ; j++) {
                 if(arr[j] == 'G') {
