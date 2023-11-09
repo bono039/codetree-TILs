@@ -2,6 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    static int maxN = 10_000;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
@@ -9,8 +11,8 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        char[] arr = new char[10_001];
-        int min = 100_000;
+        char[] arr = new char[maxN + 1];
+        int min = maxN;
         int max = 1;
 
         for(int i = 0 ; i < N ; i++) {
@@ -26,6 +28,16 @@ public class Main {
 
         if(K == 1) {
             System.out.println(arr[min] == 'G' ? 1 : 2);
+            return;
+        }
+
+        if(min + K > maxN) {
+            int sum = 0;
+            for(int i = min ; i <= max ; i++) {
+                if(arr[i] == 'G')       sum += 1;
+                else if(arr[i] == 'H')  sum += 2;
+            }
+            System.out.println(sum);
             return;
         }
 
