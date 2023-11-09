@@ -9,7 +9,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        char[] arr = new char[N + 1];
+        char[] arr = new char[10_001];
         int min = 100_000;
         int max = 1;
 
@@ -25,13 +25,13 @@ public class Main {
         }
 
         int score = 0;
-        for(int i = 0 ; i < arr.length - K + 1 ; i++) {
+        for(int i = 1 ; i < max - K ; i++) {
             int tmp = 0;
             for(int j = i ; j <= i + K ; j++) {
-                if(arr[i] == 'G') {
+                if(arr[j] == 'G') {
                     tmp += 1;
                 }
-                else {
+                else if(arr[j] == 'H') {
                     tmp += 2;
                 }
             }
