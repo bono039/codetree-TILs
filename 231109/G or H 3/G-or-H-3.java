@@ -24,6 +24,11 @@ public class Main {
             max = Math.max(max, pos);
         }
 
+        if(K == 1) {
+            System.out.println(arr[min] == 'G' ? 1 : 2);
+            return;
+        }
+
         int score = 0;
         for(int i = 1 ; i < max - K ; i++) {
             int tmp = 0;
