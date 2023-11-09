@@ -1,14 +1,14 @@
 # 📖 학습하기
 
 ## 📚 단계별 학습
-23년 11월 08일 목표(140px)까지 40px 남았습니다.
+23년 11월 08일 목표(140px)를 달성했어요🥳.
 
-![100xp](https://img.shields.io/badge/EXP-100xp-%235cb85c.svg?for-the-badge)
+![140xp](https://img.shields.io/badge/EXP-140xp-%235cb85c.svg?for-the-badge)
 ![4일째](https://img.shields.io/badge/연속학습-4일째-%23E34F26.svg?for-the-badge)
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-4|100xp|4일째🔥|
+5|140xp|4일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
@@ -16,6 +16,7 @@
 |[Novice Mid / 완전탐색 I / 자리 수 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[연습]괄호 쌍 만들어주기 2](https://www.codetree.ai/missions/5/problems/pair-parentheses-2)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231108/%EA%B4%84%ED%98%B8%20%EC%8C%8D%20%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A3%BC%EA%B8%B0%202/pair-parentheses-2.java)|
 |[Novice Mid / 완전탐색 I / 자리 수 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[개념]체크판위에서 2](https://www.codetree.ai/missions/5/problems/on-the-checkboard-2)|![보통][medium]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231108/%EC%B2%B4%ED%81%AC%ED%8C%90%EC%9C%84%EC%97%90%EC%84%9C%202/on-the-checkboard-2.java)|
 |[Novice Mid / 완전탐색 I / 자리 수 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[연습]이상한 진수 2](https://www.codetree.ai/missions/5/problems/awkward-digits-2)|![보통][medium]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231108/%EC%9D%B4%EC%83%81%ED%95%9C%20%EC%A7%84%EC%88%98%202/awkward-digits-2.java)|
+|[Novice Mid / 완전탐색 I / 자리 수 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[연습]원 모양으로 되어있는 방](https://www.codetree.ai/missions/5/problems/a-room-in-a-circle)|![보통][medium]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231108/%EC%9B%90%20%EB%AA%A8%EC%96%91%EC%9C%BC%EB%A1%9C%20%EB%90%98%EC%96%B4%EC%9E%88%EB%8A%94%20%EB%B0%A9/a-room-in-a-circle.java)|
 
 
 * 획득 경험치: 해설을 보지 않고 푼 문제에 한해 최초 1회 경험치를 획득하실 수 있습니다.
