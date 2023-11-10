@@ -30,8 +30,12 @@ public class Main {
             arr[i] = new Point(G, c);
         }
 
-        int answer = 0;
+        if(N == 1) {
+            System.out.println(0);
+            return;
+        }
 
+        int answer = 0;
         for(int i = 0 ; i < N ; i++) {  // 시작점
             int[] tmp = new int[2];
             int start = arr[i].idx;
