@@ -37,12 +37,13 @@ public class Main {
             for(int j = 0 ; j < M ; j++) {
                 if(tmp[j] != B[j]) {
                     isSame = false;
+                    break;
                 }
             }
 
             if(isSame) answer++;
         }
-        System.out.println(answer);
 
+        System.out.println(answer);
     }
 }
