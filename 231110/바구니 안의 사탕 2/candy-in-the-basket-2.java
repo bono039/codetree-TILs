@@ -20,11 +20,12 @@ public class Main {
         }
 
         int max = 0;
-        for(int i = K ; i < arr.length - K ; i++) {
+        for(int i = K ; i < arr.length ; i++) { // 시작점
             int tmp = 0;
-            for(int j = i - K ; j <= i + K ; j++) {
+            for(int j = i - K ; j <= i + K && j <= 300 ; j++) { // 끝점
                 tmp += arr[j];
             }
+            //System.out.print(tmp + " ");
             max = Math.max(max, tmp);
         }
 
