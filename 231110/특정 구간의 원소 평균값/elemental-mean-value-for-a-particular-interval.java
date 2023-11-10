@@ -18,30 +18,25 @@ public class Main {
         int answer = 0;
 
         for(int i = 0 ; i < N ; i++) {  // 모든 구간 다 정하기
-            boolean exists = false;
-
             for(int j = i ; j < N ; j++) {  // 구간 시작점
-                Set<Double> set = new HashSet<>();
-                
+                boolean exists = false;
                 double tmpSum = 0;
-                int tmpCnt = 0;
+                double avg = 0;
 
                 for(int k = i ; k <= j ; k++) {  // 구간 끝점
-                    //System.out.print(arr[k] + " ");
                     tmpSum += arr[k];
-                    tmpCnt++;
-                    set.add((double)arr[k]);
                 }
+                
+                avg = tmpSum / (j + 1 - i);
 
-                //System.out.println("|| " + tmpSum + " " + tmpCnt);
-                double avg = tmpSum / tmpCnt;
-                //System.out.println("avg -> " + avg);
-                if(set.contains(avg)) exists = true;
-            }
-
-            if(exists)  answer++;
+                for(int k = i ; k <= j ; k++) {  // 구간 끝점
+                    if((double)arr[k] == avg)
+                        exists = true;
+                }
+                if(exists)  answer++;
+            }            
         }
 
-        System.out.println(answer+2);
+        System.out.println(answer);
     }
 }
