@@ -9,7 +9,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());   // 바구니 수
         int K = Integer.parseInt(st.nextToken());   // +- K
 
-        int[] arr = new int[101];
+        int[] arr = new int[301];
 
         for(int i = 0 ; i < N ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
@@ -20,7 +20,7 @@ public class Main {
         }
 
         int max = 0;
-        for(int i = K ; i <= 100 - K ; i++) {
+        for(int i = K ; i < arr.length - K ; i++) {
             int tmp = 0;
             for(int j = i - K ; j <= i + K ; j++) {
                 tmp += arr[j];
