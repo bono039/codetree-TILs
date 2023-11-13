@@ -15,8 +15,6 @@ public class Main {
         for(int i = 0 ; i < N ; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-
-        Arrays.sort(arr);
         
         int[] diff = new int[N];
         for(int i = 0 ; i < diff.length ; i++) {
@@ -24,7 +22,7 @@ public class Main {
         }
 
         int min = Integer.MAX_VALUE;
-        for(int i = 0 ; i < diff.length - T ; i++) {
+        for(int i = 0 ; i <= diff.length - T ; i++) {
             int tmp = 0;
             for(int j = i ; j < i + T ; j++) {
                 tmp += diff[j];
