@@ -8,10 +8,11 @@
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-1|40xp|4일째🔥|
+2|40xp|4일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
+|[Novice Mid / 완전탐색 I / 구간 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[테스트]밭의 높이를 고르게하기](https://www.codetree.ai/missions/5/problems/equalizing-the-height-of-the-field)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231113/%EB%B0%AD%EC%9D%98%20%EB%86%92%EC%9D%B4%EB%A5%BC%20%EA%B3%A0%EB%A5%B4%EA%B2%8C%ED%95%98%EA%B8%B0/equalizing-the-height-of-the-field.java)|
 |[Novice Mid / 완전탐색 II / 물체 단위로 완전탐색](https://www.codetree.ai/missions?missionId=5)|[[개념]가장 가까운 두 점 사이의 거리](https://www.codetree.ai/missions/5/problems/closest-pair-of-points)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/bono039/codetree-TILs/blob/main/231113/%EA%B0%80%EC%9E%A5%20%EA%B0%80%EA%B9%8C%EC%9A%B4%20%EB%91%90%20%EC%A0%90%20%EC%82%AC%EC%9D%B4%EC%9D%98%20%EA%B1%B0%EB%A6%AC/closest-pair-of-points.java)|
 
 
