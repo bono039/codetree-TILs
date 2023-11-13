@@ -16,21 +16,16 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         
-        int[] diff = new int[N];
-        for(int i = 0 ; i < diff.length ; i++) {
-            diff[i] = Math.abs(H - arr[i]);
-        }
-
         int min = Integer.MAX_VALUE;
-        for(int i = 0 ; i <= diff.length - T ; i++) {
+        for(int i = 0 ; i <= N - T ; i++) {   // 등호 조심!!
             int tmp = 0;
-            for(int j = i ; j < i + T ; j++) {
-                tmp += diff[j];
+            for(int j = i ; j < i + T ; j++) {  // 길이가 T인 구간 전체 잡아보기
+                tmp += Math.abs(H - arr[j]);
             }
-            min = Math.min(min, tmp);
+
+            min = Math.min(min, tmp);   // 최솟값 갱신
         }
 
         System.out.println(min);
-        
     }
 }
