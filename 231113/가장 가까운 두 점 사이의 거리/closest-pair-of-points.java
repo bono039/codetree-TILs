@@ -1,16 +1,12 @@
 import java.util.*;
 import java.io.*;
 
-class Node {
+class Point {
     int x, y;
 
-    public Node(int x, int y) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public static int getDist(Node a, Node b) {
-        return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
     }
 }
 
@@ -20,7 +16,7 @@ public class Main {
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        Node[] arr = new Node[N];
+        Point[] points = new Point[N];
 
         for(int i = 0 ; i < N ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
@@ -28,17 +24,21 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            arr[i] = new Node(x, y);
+            points[i] = new Point(x, y);
         }
 
         int diff = Integer.MAX_VALUE;
         for(int i = 0 ; i < N - 1 ; i++) {
             for(int j = i + 1 ; j < N ; j++) {
-                int tmp = Node.getDist(arr[i], arr[j]);
+                int tmp = getDist(points[i], points[j]);
                 diff = Math.min(diff, tmp);
             }
         }
 
         System.out.println(diff);
+    }
+
+    public static int getDist(Point a, Point b) {
+        return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
     }
 }
