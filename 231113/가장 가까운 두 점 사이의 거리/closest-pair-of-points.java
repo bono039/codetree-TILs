@@ -20,7 +20,6 @@ public class Main {
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        int[][] grid = new int[1001][1001];
         Node[] arr = new Node[N];
 
         for(int i = 0 ; i < N ; i++) {
@@ -29,7 +28,6 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            grid[x][y] = 1;
             arr[i] = new Node(x, y);
         }
 
@@ -40,6 +38,7 @@ public class Main {
                 diff = Math.min(diff, tmp);
             }
         }
+
         System.out.println(diff);
     }
 }
