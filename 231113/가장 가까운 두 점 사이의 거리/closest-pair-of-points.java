@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-class Node implements Comparable<Node> {
+class Node {
     int x, y;
 
     public Node(int x, int y) {
@@ -9,11 +9,8 @@ class Node implements Comparable<Node> {
         this.y = y;
     }
 
-    @Override
-    public int compareTo(Node n) {
-        if(this.x != n.x)
-            return this.x - n.x;
-        return this.y - n.y;
+    public static int getDist(Node a, Node b) {
+        return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
     }
 }
 
@@ -35,15 +32,12 @@ public class Main {
             grid[x][y] = 1;
             arr[i] = new Node(x, y);
         }
-        Arrays.sort(arr);
 
         int diff = Integer.MAX_VALUE;
         for(int i = 0 ; i < N - 1 ; i++) {
-            int tmp1 = (arr[i].x - arr[i + 1].x) * (arr[i].x - arr[i + 1].x);
-            int tmp2 = (arr[i].y - arr[i + 1].y) * (arr[i].y - arr[i + 1].y);
-
-            if((tmp1 + tmp2) < diff) {
-                diff = tmp1 + tmp2;
+            for(int j = i + 1 ; j < N ; j++) {
+                int tmp = Node.getDist(arr[i], arr[j]);
+                diff = Math.min(diff, tmp);
             }
         }
         System.out.println(diff);
