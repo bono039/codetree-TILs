@@ -2,6 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    static final int OFFSET = 100;
+
     static int N;
     static int[][] grid = new int[201][201];
     static int cnt = 0;
@@ -16,17 +18,15 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            paint(x + 100, y + 100);
+            paint(x + OFFSET, y + OFFSET);
         }
 
         for(int i = 0 ; i < grid.length ; i++) {
             for(int j = 0 ; j < grid[i].length ; j++) {
-                //System.out.print(grid[i][j] + " ");
                 if(grid[i][j] != 0) {
                     cnt++;
                 }
             }
-            //System.out.println();
         }
 
         System.out.println(cnt);
