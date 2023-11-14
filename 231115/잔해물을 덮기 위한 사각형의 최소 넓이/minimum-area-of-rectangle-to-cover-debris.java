@@ -26,8 +26,8 @@ public class Main {
         int minX = 2000;    int minY = 2000;
         int maxX = 0;       int maxY = 0;
 
-        for(int i = x1 ; i <= x2 ; i++) {
-            for(int j = y1 ; j <= y2 ; j++) {
+        for(int i = x1 ; i < x2 ; i++) {
+            for(int j = y1 ; j < y2 ; j++) {
                 if(grid[i][j] == 1) {
                     //System.out.print("HI");
                     minX = Math.min(minX, i);
@@ -41,14 +41,13 @@ public class Main {
         
         if(minX == 2000 && minY == 2000 && maxX == 0 && maxY == 0)
             System.out.println(0);
-        //System.out.println(minX + " " + minY + " " + maxX + " " + maxY);
         else
-            System.out.println(Math.abs(maxX - minX) * Math.abs(maxY - minY));
+            System.out.println((maxX - minX + 1) * (maxY - minY + 1));
     }
 
     private static void paint(int x1, int y1, int x2, int y2, int num) {
-        for(int i = x1 ; i <= x2 ; i++) {
-            for(int j = y1 ; j <= y2 ; j++) {
+        for(int i = x1 ; i < x2 ; i++) {
+            for(int j = y1 ; j < y2 ; j++) {
                 grid[i][j] = num;
             }
         }
