@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[] dx = {0, 1, 1, -1};   // 가로 세로 왼쪽대각선 오른쪽대각선 
-    static int[] dy = {1, 0, 1, 1};
+    static int[] dx = {0, 1, 1, 1};   // 가로 세로 왼쪽대각선 오른쪽대각선 
+    static int[] dy = {1, 0, 1, -1};
 
     static int[][] grid = new int[19][19];
 
