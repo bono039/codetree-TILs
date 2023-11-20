@@ -18,8 +18,8 @@ public class Main {
             }
         }
 
-        for(int j = 0 ; j < 19 ; j++) {
-            for(int i = 0 ; i < 19 ; i++) {
+        for(int i = 0 ; i < 19 ; i++) {
+            for(int j = 0 ; j < 19 ; j++) {
                 if(grid[i][j] != 0) {
                     for(int d = 0 ; d < 4 ; d++) {
                         int nx = i;
@@ -56,7 +56,7 @@ public class Main {
                         // 같은 오목눈이 5개라면
                         if(cnt == 5) {
                             System.out.println(grid[i][j]);
-                            System.out.println((i + 1) + " " + (j + 3));
+                            System.out.println((i + 2 * dx[d] + 1) + " " + (j + 2 * dy[d] + 1));
                             return;
                         }
                     }
