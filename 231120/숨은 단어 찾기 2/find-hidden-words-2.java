@@ -52,7 +52,7 @@ public class Main {
                             else break;
                         }
 
-                        if(tmpCnt == 3) {
+                        if(tmpCnt >= 3) {
                             cnt++;
                         }
                     }
@@ -60,7 +60,7 @@ public class Main {
             }
         }
 
-        System.out.println(cnt - 1);
+        System.out.println(cnt);
     }
 
     private static boolean inRange(int x, int y) {
