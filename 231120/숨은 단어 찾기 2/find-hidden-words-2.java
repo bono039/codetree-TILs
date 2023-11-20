@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[] dx = {0, 0, 1, -1, 1, 1, -1, -1};   // 동 서 남 북 동남 남서
-    static int[] dy = {1, -1, 0, 0, 1, -1, -1, 0};
+    static int[] dx = {1, 0, -1, -1, -1, 0, 1, 1};
+    static int[] dy = {-1, -1, -1, 0, 1, 1, 1, 0};
 
     static int N, M, cnt;
     static char[][] words;
@@ -25,42 +25,38 @@ public class Main {
 
         for(int i = 0 ; i < N ; i++) {
             for(int j = 0 ; j < M ; j++) {
-                if(words[i][j] == 'L') {
-                    for(int d = 0 ; d < dx.length ; d++) {
-                        int x = i;
-                        int y = j;
-                        int tmpCnt = 1;
+                if(words[i][j] != 'L')  continue;
 
-                        // 증가하는 방향 탐색
-                        while(true) {
-                            int nx = x + dx[d];
-                            int ny = y + dy[d];
+                for(int d = 0 ; d < 8 ; d++) {
+                    int x = i;
+                    int y = j;
+                    int tmpCnt = 1;
 
-                            if(inRange(nx, ny) && words[nx][ny] == 'E') {
-                                tmpCnt++;
-                                //System.out.println(nx + "/" + ny);
-                                // System.out.println("tmpCnt > " + tmpCnt);
-                                x = nx;
-                                y = ny;
+                    // 증가하는 방향 탐색
+                    while(true) {
+                        int nx = x + dx[d];
+                        int ny = y + dy[d];
 
-                                if(tmpCnt == 3) {
-                                    cnt++;
-                                    break;
-                                }
-                            }
-                            else
-                                break;
-
+                        if(inRange(nx, ny) && words[nx][ny] == 'E') {
+                            tmpCnt++;
                             
+                            if(tmpCnt == 3) {
+                                cnt++;
+                                break;
+                            }
                         }
+                        else
+                            break; 
 
-                        
+                        // 현재 위치 갱신
+                        x = nx;
+                        y = ny;                          
                     }
-                }
+                }                
             }
         }
 
-        System.out.println(cnt - 1);
+        System.out.println(cnt);
     }
 
     private static boolean inRange(int x, int y) {
