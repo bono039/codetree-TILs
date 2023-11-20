@@ -14,7 +14,7 @@ public class Main {
         for(int i = 0 ; i < 19 ; i++) {
             String[] str = br.readLine().split(" ");
             for(int j = 0 ; j < 19 ; j++) {
-                grid[i][j] = Integer.parseInt(str[j]);  // 수정된 부분
+                grid[i][j] = Integer.parseInt(str[j]);
             }
         }
 
@@ -31,26 +31,26 @@ public class Main {
                             nx += dx[d];
                             ny += dy[d];
 
-                            if(inRange(nx, ny)) {
-                                if(grid[i][j] == grid[nx][ny]) cnt++;
-                                else break;
+                            if(inRange(nx, ny) && grid[i][j] == grid[nx][ny]) {
+                                cnt++;
+                            } else {
+                                break;
                             }
-                            else    break;
                         }
 
                         nx = i;
                         ny = j;
-                        
+
                         // 증가하는 방향의 반대 방향 탐색
                         while(true) {
                             nx -= dx[d];
                             ny -= dy[d];
 
-                            if(inRange(nx, ny)) {
-                                if(grid[i][j] == grid[nx][ny]) cnt++;
-                                else break;
+                            if(inRange(nx, ny) && grid[i][j] == grid[nx][ny]) {
+                                cnt++;
+                            } else {
+                                break;
                             }
-                            else break;
                         }
 
                         // 같은 오목눈이 5개라면
