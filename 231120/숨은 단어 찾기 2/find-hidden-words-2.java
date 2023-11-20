@@ -38,22 +38,29 @@ public class Main {
 
                             if(inRange(nx, ny) && words[nx][ny] == 'E') {
                                 tmpCnt++;
+                                //System.out.println(nx + "/" + ny);
+                                // System.out.println("tmpCnt > " + tmpCnt);
                                 x = nx;
                                 y = ny;
+
+                                if(tmpCnt == 3) {
+                                    cnt++;
+                                    break;
+                                }
                             }
                             else
                                 break;
+
+                            
                         }
 
-                        if(tmpCnt == 3) {
-                            cnt++;
-                        }
+                        
                     }
                 }
             }
         }
 
-        System.out.println(cnt);
+        System.out.println(cnt - 1);
     }
 
     private static boolean inRange(int x, int y) {
