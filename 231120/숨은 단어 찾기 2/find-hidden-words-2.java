@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[] dx = {0, 1, 1, 1};   // 동쪽 남쪽 동남 남서
-    static int[] dy = {1, 0, 1, -1};
+    static int[] dx = {0, 0, 1, -1, 1, 1, -1, -1};   // 동 서 남 북 동남 남서
+    static int[] dy = {1, -1, 0, 0, 1, -1, -1, 0};
 
     static int N, M, cnt;
     static char[][] words;
@@ -26,33 +26,26 @@ public class Main {
         for(int i = 0 ; i < N ; i++) {
             for(int j = 0 ; j < M ; j++) {
                 if(words[i][j] == 'L') {
-                    for(int d = 0 ; d < 4 ; d++) {
-                        int nx = i;
-                        int ny = j;
-                        boolean isLee = true;
+                    for(int d = 0 ; d < dx.length ; d++) {
+                        int x = i;
+                        int y = j;
                         int tmpCnt = 1;
 
                         // 증가하는 방향 탐색
                         while(true) {
-                            nx += dx[d];
-                            ny += dy[d];
+                            int nx = x + dx[d];
+                            int ny = y + dy[d];
 
-                            if(inRange(nx, ny) && words[nx][ny] == 'E') tmpCnt++;
-                            else    break;
+                            if(inRange(nx, ny) && words[nx][ny] == 'E') {
+                                tmpCnt++;
+                                x = nx;
+                                y = ny;
+                            }
+                            else
+                                break;
                         }
 
-                        // 반대 방향 탐색
-                        nx = i;
-                        ny = j;
-                        while(true) {
-                            nx -= dx[d];
-                            ny -= dy[d];
-
-                            if(inRange(nx, ny) && words[nx][ny] == 'E') tmpCnt++;
-                            else break;
-                        }
-
-                        if(tmpCnt >= 3) {
+                        if(tmpCnt == 3) {
                             cnt++;
                         }
                     }
