@@ -17,22 +17,23 @@ public class Main {
         }
 
         int answer = 0;
-        List<Integer> list = new ArrayList<>();
 
         for(int i = 0 ; i < N ; i++) {
             for(int j = 0 ; j < N - 2 ; j++) {
-                int coin = 0;
+                
+                for(int k = 0 ; k < N ; k++) {
+                    for(int l = 0 ; l < N - 2; l++) {
+                        if(i == k && Math.abs(j - 1) <= 2)  continue;
 
-                for(int k = j ; k < j + 3 ; k++) {
-                    if(map[i][k] == 1) {
-                        coin++;
+                        int cnt1 = map[i][j] + map[i][j + 1] + map[i][j + 2];
+                        int cnt2 = map[k][l] + map[k][l + 1] + map[k][l + 2];
+                        answer = Math.max(answer, cnt1 + cnt2);
                     }
                 }
-                list.add(coin);
+                
             }
         }
-        Collections.sort(list);
 
-        System.out.println(list.get(list.size() - 1) + list.get(list.size() - 2));
+        System.out.println(answer);
     }
 }
