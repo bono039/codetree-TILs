@@ -23,7 +23,7 @@ public class Main {
                 
                 for(int k = 0 ; k < N ; k++) {
                     for(int l = 0 ; l < N - 2; l++) {
-                        if(i == k && Math.abs(j - 1) <= 2)  continue;
+                        if(i == k && Math.abs(j - l) <= 2)  continue;
 
                         int cnt1 = map[i][j] + map[i][j + 1] + map[i][j + 2];
                         int cnt2 = map[k][l] + map[k][l + 1] + map[k][l + 2];
