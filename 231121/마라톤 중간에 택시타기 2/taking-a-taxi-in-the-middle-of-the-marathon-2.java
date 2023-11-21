@@ -26,9 +26,10 @@ public class Main {
             int tmpX = arr[i].x;
             int tmpY = arr[i].y;
 
-            arr[i] = new Point(0, 0);   // 건너뛰기
+            arr[i] = new Point(arr[i-1].x, arr[i-1].y); // 건너뛰기
 
-            min = Math.min(min, getDistance(arr));
+            int dist = getDistance(arr);
+            min = Math.min(min, dist);
             
             // 원상복구
             arr[i].x = tmpX;
