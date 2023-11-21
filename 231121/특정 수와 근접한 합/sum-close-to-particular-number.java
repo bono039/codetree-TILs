@@ -19,8 +19,8 @@ public class Main {
 
         int diff = Integer.MAX_VALUE;
         for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {  // 제외시킬 번호1
-                for(int k = 0 ; k < N ; k++) {  // 제외시킬 번호2
+            for(int j = i + 1 ; j < N ; j++) {  // 제외시킬 번호1
+                for(int k = j + 1 ; k < N ; k++) {  // 제외시킬 번호2
                     if(Math.abs(S - (total - arr[j] - arr[k])) < diff) {
                         diff = Math.abs(S - (total - arr[j] - arr[k]));
                     }
