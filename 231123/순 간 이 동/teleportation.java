@@ -13,14 +13,21 @@ public class Main {
 
         int answer = 0;
         int pos = A;
-        if(((int)Math.abs(A - x) < (int)Math.abs(A - y))) {
-            answer += (int)Math.abs(A - x);
-            answer += (int)Math.abs(B - y);
+
+        if((Math.min(A, B) < x && x < Math.max(A, B)) || (Math.min(A, B) < y && y < Math.max(A, B))) {
+            if(((int)Math.abs(A - x) < (int)Math.abs(A - y))) {
+                answer += (int)Math.abs(A - x);
+                answer += (int)Math.abs(B - y);
+            }
+            else {
+                answer += (int)Math.abs(A - y);
+                answer += (int)Math.abs(B - x);
+            }            
         }
         else {
-            answer += (int)Math.abs(A - y);
-            answer += (int)Math.abs(B - x);
+            answer = (int)Math.abs(A - B);
         }
+
         System.out.println(answer);
     }
 }
