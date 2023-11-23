@@ -12,18 +12,19 @@ public class Main {
         int y = Integer.parseInt(st.nextToken());
 
         int answer = 0;
-        int pos = A;
 
-
+        // Case 1) a -> x -> y -> b 순서로 이동
         if(((int)Math.abs(A - x) < (int)Math.abs(A - y))) {
             answer += (int)Math.abs(A - x);
             answer += (int)Math.abs(B - y);
         }
+        // Case 2) a -> y -> x -> b 순서로 이동
         else {
             answer += (int)Math.abs(A - y);
             answer += (int)Math.abs(B - x);
         }            
         
+        // Case 3) a -> b 바로 이동
         answer = Math.min(answer, Math.abs(A - B));
         System.out.println(answer);
     }
