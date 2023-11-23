@@ -11,36 +11,14 @@ public class Main {
         int c = Integer.parseInt(st.nextToken());
 
         int answer = 0;
-        while(true) {
-            int diff1 = Math.abs(b - a);
-            int diff2 = Math.abs(c - b);
-            
-            if((c - b) * (b - a) == 1) {
-                break;
-            }
-
-            if(diff2 < diff1) {
-                if(Math.abs(c - b) != 1) {
-                    a = b;
-                    b = c - 1;
-                    answer++;
-                }
-                else {
-                    a = b - 1;
-                    answer++;
-                }
-            }
-            else {
-                if(Math.abs(b - a) != 1) {
-                    c = b;
-                    b = a + 1;
-                    answer++;
-                }
-                else {
-                    c = b + 1;
-                    answer++;
-                }
-            }
+        if((a + 1 == b) && (b + 1 == c)) {
+            answer = 0;
+        }
+        else if(a + 2 == b || b + 2 == c) {
+            answer = 1;
+        }
+        else {
+            answer = 2;
         }
 
         System.out.println(answer);
