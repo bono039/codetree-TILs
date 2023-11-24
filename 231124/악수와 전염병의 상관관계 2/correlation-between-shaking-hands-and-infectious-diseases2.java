@@ -45,15 +45,22 @@ public class Main {
         answer[P] = 1;
 
         for (int i = 0; i < T; i++) {
-            if (answer[people[i].x] == 1 && answer[people[i].y] != 1 && tmp[people[i].x] > 0) {
-                answer[people[i].x] = 1;
-                answer[people[i].y] = 1;
-                tmp[people[i].x]--;
+            int nx = people[i].x;
+            int ny = people[i].y;
+
+            if (answer[nx] == 1 && answer[ny] != 1 && tmp[nx] > 0) {
+                answer[nx] = 1;
+                answer[ny] = 1;
+                tmp[nx]--;
             }
-            else if(answer[people[i].y] == 1 && answer[people[i].x] != 1  && tmp[people[i].y] > 0) {
-                answer[people[i].x] = 1;
-                answer[people[i].y] = 1;
-                tmp[people[i].y]--;
+            else if(answer[ny] == 1 && answer[nx] != 1  && tmp[ny] > 0) {
+                answer[nx] = 1;
+                answer[ny] = 1;
+                tmp[ny]--;
+            }
+            else if(answer[nx] == 1 && answer[ny] == 1) {
+                tmp[nx]--;
+                tmp[ny]--;
             }
         }
 
