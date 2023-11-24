@@ -23,10 +23,9 @@ public class Main {
             if(arr[i] < target) {
                 for(int j = i + 1 ; j < N ; j++) {
                     if(arr[j] > target) {
-                        int diff = target - arr[i];
-                        arr[i] = target;
+                        int diff = Math.min(target - arr[i], arr[j] - target);
+                        arr[i] += diff;
                         arr[j] -= diff;
-                        //System.out.println("arr[j] > " + arr[j]);
                         cnt += diff;
                     }
                 }
@@ -34,8 +33,8 @@ public class Main {
             else if(arr[i] > target) {
                 for(int j = i + 1 ; j < N ; j++) {
                     if(arr[j] < target) {
-                        int diff = arr[i] - target;
-                        arr[i] = target;
+                        int diff = Math.min(arr[i] - target, target - arr[j]);
+                        arr[i] -= diff;
                         arr[j] += diff;
                         cnt += diff;
                     }
