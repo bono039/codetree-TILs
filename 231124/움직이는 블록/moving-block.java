@@ -26,7 +26,7 @@ public class Main {
                         int diff = target - arr[i];
                         arr[i] = target;
                         arr[j] -= diff;
-                        System.out.println("arr[j] > " + arr[j]);
+                        //System.out.println("arr[j] > " + arr[j]);
                         cnt += diff;
                     }
                 }
