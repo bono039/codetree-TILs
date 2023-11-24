@@ -15,22 +15,11 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        boolean[] visited = new boolean[N];
-
         int cnt = 0;
-        for(int i = arr.length - 1 - M ; i >= M ; i--) {
-            int tmp = 0;
-            if(arr[i] == 1 && !visited[i]) {
-                for(int j = i - M ; j <= i + M ; j++) {
-                    visited[j] = true;
-                    if(arr[j] == 1) {
-                        tmp++;
-                    }
-                }
-            }
-
-            if(tmp > 0) {
+        for(int i = 0 ; i < N ; i++) {
+            if(arr[i] == 1) {
                 cnt++;
+                i += M * 2;
             }
         }
         System.out.println(cnt);
