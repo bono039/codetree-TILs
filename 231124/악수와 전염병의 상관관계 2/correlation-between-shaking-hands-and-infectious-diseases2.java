@@ -12,9 +12,7 @@ class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person p) {
-        if (this.t != p.t)
-            return this.t - p.t;
-        return this.x - p.x;
+        return this.t - p.t;
     }
 }
 
@@ -28,8 +26,7 @@ public class Main {
         int P = Integer.parseInt(st.nextToken());
         int T = Integer.parseInt(st.nextToken());
 
-        Person[] people = new Person[T];
-        
+        Person[] people = new Person[T];        
         for (int i = 0; i < T; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             int t = Integer.parseInt(st.nextToken());
@@ -42,13 +39,21 @@ public class Main {
         Arrays.sort(people);
 
         int[] answer = new int[N + 1]; // 전염병 여부 배열
+        int[] tmp = new int[N + 1];
+        Arrays.fill(tmp, K);
+
+        answer[P] = 1;
+
         for (int i = 0; i < T; i++) {
-            if (people[i].x == P || people[i].y == P) {
-                if (K > 0) {
-                    answer[people[i].x] = 1;
-                    answer[people[i].y] = 1;
-                    K--;
-                }
+            if (answer[people[i].x] == 1 && answer[people[i].y] != 1 && tmp[people[i].x] > 0) {
+                answer[people[i].x] = 1;
+                answer[people[i].y] = 1;
+                tmp[people[i].x]--;
+            }
+            else if(answer[people[i].y] == 1 && answer[people[i].x] != 1  && tmp[people[i].y] > 0) {
+                answer[people[i].x] = 1;
+                answer[people[i].y] = 1;
+                tmp[people[i].y]--;
             }
         }
 
