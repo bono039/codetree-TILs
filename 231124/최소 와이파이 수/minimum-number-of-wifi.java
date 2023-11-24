@@ -9,21 +9,29 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[N + 1];
+        int[] arr = new int[N];
         st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 1 ; i <= N ; i++) {
+        for(int i = 0 ; i < N ; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int cnt = Integer.MAX_VALUE;
+        boolean[] visited = new boolean[N];
 
-        for(int i = M ; i < arr.length - M ; i++) {
+        int cnt = 0;
+        for(int i = arr.length - 1 - M ; i >= M ; i--) {
             int tmp = 0;
-            for(int j = i - M ; j <= i + M ; j++) {
-                if(arr[j] == 1)
-                    tmp++;
+            if(arr[i] == 1 && !visited[i]) {
+                for(int j = i - M ; j <= i + M ; j++) {
+                    visited[j] = true;
+                    if(arr[j] == 1) {
+                        tmp++;
+                    }
+                }
             }
-            cnt = Math.min(cnt, tmp);
+
+            if(tmp > 0) {
+                cnt++;
+            }
         }
         System.out.println(cnt);
     }
