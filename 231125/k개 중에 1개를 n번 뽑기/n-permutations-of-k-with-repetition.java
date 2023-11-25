@@ -14,7 +14,7 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
 
-        arr = new int[K];
+        arr = new int[K + 1];
         for(int i = 0 ; i < arr.length ; i++) {
             arr[i] = i + 1;
         }
