@@ -12,8 +12,8 @@ public class Main {
 
         int answer = Integer.MIN_VALUE;
 
-        for(int i = 1 ; i < C / A ; i++) {
-            for(int j = 1 ; j < C / B ; j++) {
+        for(int i = 0 ; i <= C / A ; i++) {
+            for(int j = 0 ; j <= C / B ; j++) {
                 int tmp = A * i + B * j;
 
                 if(tmp <= C) {
