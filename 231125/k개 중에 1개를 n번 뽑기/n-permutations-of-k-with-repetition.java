@@ -14,7 +14,7 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
 
-        arr = new int[K + 1];
+        arr = new int[K];
         for(int i = 0 ; i < arr.length ; i++) {
             arr[i] = i + 1;
         }
@@ -31,7 +31,7 @@ public class Main {
             return;
         }
 
-        for(int i = 0 ; i < N ; i++) {
+        for(int i = 0 ; i < K ; i++) {
             result[depth] = arr[i];
             back(depth + 1);
         }
