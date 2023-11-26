@@ -23,6 +23,7 @@ public class Main {
         dp = new long[N + 1][N + 1];
         initialize();
 
+        // 왼쪽과 위쪽에서 온 값 中 큰 값 가져오기
         for(int i = 1 ; i < N ; i++) {
             for(int j = 1 ; j < N ; j++) {
                 dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + arr[i][j];
@@ -32,10 +33,11 @@ public class Main {
         System.out.println(dp[N - 1][N - 1]);
     }
 
+    // 초기화 함수 : 0번째 행, 0번째 열 미리 채우기
     private static void initialize() {
         dp[0][0] = arr[0][0];
 
-        for(int i = 1 ; i <= N ; i++) {
+        for(int i = 1 ; i < N ; i++) {
             dp[0][i] = dp[0][i - 1] + arr[0][i];
             dp[i][0] = dp[i - 1][0] + arr[i][0];
         }
