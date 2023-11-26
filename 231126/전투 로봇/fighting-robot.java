@@ -57,7 +57,7 @@ public class Main {
                 int nx = now.x + dx[d];
                 int ny = now.y + dy[d];
 
-                if(inRange(x, y) && !visited[x][y] && grid[x][y] <= lv) {
+                if(inRange(nx, ny) && !visited[nx][ny] && grid[nx][ny] <= lv) {
                     q.add(new Node(nx, ny));
                     ans[nx][ny] = ans[now.x][now.y] + 1;
                     visited[nx][ny] = true;
