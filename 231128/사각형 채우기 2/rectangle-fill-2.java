@@ -13,7 +13,7 @@ public class Main {
         dp[2] = 3;
 
         for(int i = 3 ; i <= N ; i++) {
-            dp[i] = (dp[i - 1] * 2 - 1) % MOD;
+            dp[i] = (dp[i - 1] + 2 * dp[i - 2]) % MOD;
         }
 
         System.out.println(dp[N]);
