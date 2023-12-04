@@ -22,6 +22,11 @@ public class Main {
         }
         Arrays.sort(arr);
 
+        if(M == 1) {
+            System.out.println(arr[N - 1]);
+            return;
+        }
+
         getComb(0, 0);
         System.out.println(max);
     }
