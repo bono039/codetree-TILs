@@ -22,11 +22,6 @@ public class Main {
         }
         Arrays.sort(arr);
 
-        if(M == 1) {
-            System.out.println(arr[N - 1]);
-            return;
-        }
-
         getComb(0, 0);
         System.out.println(max);
     }
@@ -38,7 +33,7 @@ public class Main {
         }
 
         for(int i = lastNum ; i < N ; i++) {
-            comb.add(i);
+            comb.add(arr[i]);
             getComb(i + 1, depth + 1);
             comb.remove(comb.size() - 1);
         }
