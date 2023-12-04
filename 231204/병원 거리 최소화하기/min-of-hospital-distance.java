@@ -7,6 +7,7 @@ public class Main {
     static int N, M;
     static int[][] map, tmpMap;
 
+    static List<Node> people = new ArrayList<>();   // 사람 리스트
     static List<Node> hospitals = new ArrayList<>();    // 병원 리스트
     static boolean[] visited;   // 중복 방지용 배열
     static int[] ans;
@@ -30,52 +31,20 @@ public class Main {
             for(int j = 0 ; j < N ; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
 
-                if(map[i][j] == 2)  hospitals.add(new Node(idx++, i, j));
+                if(map[i][j] == 1)  people.add(new Node(i, j));
+                else if(map[i][j] == 2)  hospitals.add(new Node(i, j));
             }
         }
-
-        // 0 : 빈 칸 / 1 : 사람 / 2 : 병원
 
         // 1. 남아있을 병원 M개 고르기 (조합 리스트)
         ans = new int[M];
         visited = new boolean[hospitals.size()];
-        Collections.sort(hospitals);
         comb(0, 0);
 
         // 2. 조합 리스트 돌면서, 최솟값 구하고 갱신하기
-        for(int k = 0 ; k < combList.size() ; k++) {
-            // M만큼의 병원 조합이 있는 2차원 배열 따로 또 만들기
-            tmpMap = new int[N][N];
-
-            String[] arr = combList.get(k).split(" ");
-            for(int i = 0 ; i < arr.length ; i++) {
-                int xx = hospitals.get(Integer.parseInt(arr[i])).x;
-                int yy = hospitals.get(Integer.parseInt(arr[i])).y;
-
-                tmpMap[xx][yy] = 2;
-            }
-
-            for(int i = 0 ; i < N ; i++) {
-                for(int j = 0 ; j < N ; j++) {
-                    if(map[i][j] == 1) {
-                        tmpMap[i][j] = 1;
-                    }
-                }
-            }
-
-            // 새로 만든 배열에서 거리 총합 구하기
-            for(int i = 0 ; i < N ; i++) {
-                int tmp = 0;    // 병원 거리의 총합
-                for(int j = 0 ; j < N ; j++) {
-                    if(tmpMap[i][j] == 1) {
-                        //System.out.println(i + " " + j);
-                        tmp += getDist(i, j);
-                    }
-                }
-                //System.out.println("min > " + min);
-
-                min = Math.min(min, tmp);
-            }
+        // getMinDistance
+        for(String numArr : combList) {
+            min = Math.min(min, getDistSum(numArr.split(" ")));
         }
 
         System.out.println(min);
@@ -96,39 +65,43 @@ public class Main {
             if(visited[i])  continue;
 
             visited[i] = true;
-            ans[depth] = hospitals.get(i).idx;
-            comb(idx + 1, depth + 1);
+            ans[depth] = i;
+            comb(i + 1, depth + 1);
             visited[i] = false;
         }
     }
+    
+    private static int getDist(int a, int b, int x, int y) {
+        return Math.abs(a - x) + Math.abs(b - y);
+    }
 
-    private static int getDist(int x, int y) {
-        int dist = Integer.MAX_VALUE;
-
-        for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
-                if(tmpMap[i][j] == 2) {
-                    int tmpDist = Math.abs(x - i) + Math.abs(y - j);
-                    dist = Math.min(dist, tmpDist);
-                }
-            }
+    private static int getDistSum(String[] str) {
+        int[] combArr = new int[str.length];
+        for(int i = 0 ; i < str.length ; i++) {
+            combArr[i] = Integer.parseInt(str[i]);
         }
 
-        return dist;
+        int distSum = 0;
+
+        for(Node p : people) {
+            int tmp = N * 2;
+
+            for(int num : combArr) {
+                Node hos = hospitals.get(num);
+                tmp = Math.min(tmp, getDist(hos.x, hos.y, p.x, p.y));
+            }
+            distSum += tmp;
+        }
+
+        return distSum;
     }
 }
 
-class Node implements Comparable<Node> {
-    int idx, x, y;
+class Node {
+    int x, y;
 
-    public Node(int idx, int x, int y) {
-        this.idx = idx;
+    public Node(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    @Override
-    public int compareTo(Node n) {
-        return this.idx - n.idx;
     }
 }
