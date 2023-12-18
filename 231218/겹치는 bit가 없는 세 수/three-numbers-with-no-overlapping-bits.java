@@ -6,8 +6,6 @@ public class Main {
 
     static int N;
     static int[] arr;
-    static List<Integer> list = new ArrayList<>();    
-    static boolean[] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,48 +19,25 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        // 숫자 3개 고르기 (조합)
-        visited = new boolean[N];
-        comb(0, 0);
+        // 숫자 3개 고르기 (완탐)
+        for(int i = 0 ; i < arr.length - 2 ; i++) {
+            for(int j = i + 1 ; j < arr.length - 1 ; j++) {
+                for(int k = j + 1 ; k < arr.length ; k++) {
+                    if(chkBitOverlap(arr[i], arr[j], arr[k]) && (getSum(arr[i], arr[j], arr[k]) > max)) {
+                        max = getSum(arr[i], arr[j], arr[k]);
+                    }
+                }
+            }
+        }
         System.out.println(max);
     }
 
-    private static void comb(int idx, int depth) {
-        if(depth == 3) {
-            if(chkBitOverlap()) {
-                max = Math.max(max, getSum());
-            }
-            return;
-        }
-
-        for(int i = idx ; i < arr.length ; i++) {
-            if(!visited[i]) {
-                list.add(arr[i]);
-                visited[i] = true;
-
-                comb(i + 1, depth + 1);
-                list.remove(list.size() - 1);
-                visited[i] = false;
-            }
-        }
-
-        return;
-    }
-
     // bit가 서로 겹치지 않음 = & 연산하고 결과가 0일 때
-    private static boolean chkBitOverlap() {
-        int a = list.get(0);
-        int b = list.get(1);
-        int c = list.get(2);
-
+    private static boolean chkBitOverlap(int a, int b, int c) {
         return ((a & b) == 0 && (a & c) == 0 && (b & c) == 0);
     }
 
-    private static int getSum() {
-        int sum = 0;
-        for(int i : list) {
-            sum += i;
-        }
-        return sum;
+    private static int getSum(int a, int b, int c) {
+        return a + b + c;
     }
 }
