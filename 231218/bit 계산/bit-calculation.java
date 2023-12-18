@@ -31,7 +31,7 @@ public class Main {
                 int x = Integer.parseInt(str[1]);
 
                 // x 번째 비트가 1인지 확인하여 결과를 StringBuilder에 추가
-                sb.append((A & (1 << x)) == (1 << x)).append("\n");
+                sb.append((A & (1 << x)) == (1 << x) ? 1 : 0).append("\n");
             }
             else if(str[0].equals("toggle")) {
                 int x = Integer.parseInt(str[1]);
