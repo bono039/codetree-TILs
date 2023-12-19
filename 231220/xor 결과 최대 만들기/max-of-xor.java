@@ -20,6 +20,7 @@ public class Main {
         for(int i = 0 ; i < N ; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
+        Arrays.sort(arr);
 
         combination(0, 0);
         System.out.println(max);
@@ -33,7 +34,7 @@ public class Main {
 
         for(int i = currIdx ; i < N ; i++) {
             list.add(arr[i]);
-            combination(currIdx + 1, depth + 1);
+            combination(i + 1, depth + 1);
             list.remove(list.size() - 1);
         }
     }
