@@ -27,7 +27,7 @@ public class Main {
 
     private static void combination(int currIdx, int depth) {
         if(depth == M) {
-            xor();
+            max = Math.max(max, xor());
             return;
         }
 
@@ -38,13 +38,13 @@ public class Main {
         }
     }
 
-    private static void xor() {
+    private static int xor() {
         int num = list.get(0);
 
         for(int i = 1 ; i < list.size() ; i++) {
             num ^= list.get(i);
         }
 
-        max = Math.max(max, num);
+        return num;
     }
 }
