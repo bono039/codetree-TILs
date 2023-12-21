@@ -21,16 +21,12 @@ public class Main {
         int cnt = 0;
         for(int i = 0 ; i < N - 1 ; i++) {
             for(int j = i + 1 ; j < N ; j++) {
-                if(!isOverlap(arr[i], arr[j])) {
+                if((arr[i] & arr[j]) == 0) {
                     cnt++;
                 }
             }
         }
 
         System.out.println(cnt);
-    }
-    
-    private static boolean isOverlap(int a, int b) {
-        return (a & b) == 0 ? false : true;
     }
 }
