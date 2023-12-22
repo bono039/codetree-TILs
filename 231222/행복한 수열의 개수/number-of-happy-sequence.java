@@ -25,23 +25,29 @@ public class Main {
         // 행복한 행 구하기
         for(int i = 0 ; i < N ; i++) {
             int tmp = 1;
+            int beforeVal = map[i][0];
 
-            for(int j = 0 ; j < N - 1 ; j++) {
-                if(map[i][j] == map[i][j + 1]) {
+            for(int j = 1 ; j < N ; j++) {
+                if(map[i][j] == beforeVal) {
                     tmp++;
                 }
                 else {
+                    beforeVal = map[i][j];
                     tmp = 1;
                 }
-            }
 
-            if(tmp >= M) cnt++;
+                if(tmp >= M) {
+                    cnt++;
+                    break;
+                }
+            }
         }
 
 
-        // 행복한 행 구하기
+        // 행복한 열 구하기
         for(int i = 0 ; i < N ; i++) {
             int tmp = 1;
+            int beforeVal = 0;
 
             for(int j = 0 ; j < N - 1 ; j++) {
                 if(map[j][i] == map[j + 1][i]) {
@@ -50,9 +56,12 @@ public class Main {
                 else {
                     tmp = 1;
                 }
-            }
 
-            if(tmp >= M) cnt++;
+                if(tmp >= M) {
+                    cnt++;
+                    break;
+                }
+            }
         }
 
         System.out.println(cnt);
