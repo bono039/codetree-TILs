@@ -10,8 +10,6 @@ public class Main {
     static int[][] board, origin;
     static int min = (int)1e9;
 
-    static Queue<int[]> q = new LinkedList<>();
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
@@ -41,7 +39,7 @@ public class Main {
 
             for(int y = 1 ; y <= M ; y++) {
                 if(((state >> (y - 1)) & 1) == 1) {
-                    int x = 0;
+                    int x = 1;
 
                     for(int dir = 0; dir < 5 ; dir++) {
                         int nx = x + dx[dir];
