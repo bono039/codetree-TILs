@@ -95,6 +95,6 @@ public class Main {
     }
 
     private static boolean inRange(int x, int y) {
-        return (1 <= x && x <= N && 1 <= y && y <= N);
+        return (1 <= x && x <= N && 1 <= y && y <= M);
     }
 }
