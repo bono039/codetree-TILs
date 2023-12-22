@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-//
 public class Main {
     static int[] dx = {0, -1,1,0,0};   // 상하좌우
     static int[] dy = {0, 0,0,-1,1};
@@ -18,12 +17,19 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         board = new int[N + 1][M + 1];
-        origin = new int[N + 1][M + 1];
 
         for(int i = 1 ; i <= N ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= M ; j++) {
                 board[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        origin = new int[N + 1][M + 1];
+        
+        for(int i = 1 ; i <= N ; i++) {
+            for(int j = 1 ; j <= M ; j++) {
+                origin[i][j] = board[i][j];
             }
         }
 
@@ -73,15 +79,16 @@ public class Main {
                         }
                     }
                 }
+            }
 
-                boolean fullFilled = true;
-                for(int j = 1 ; j <= M ; j++)
-                    if(board[N][j] == 0)    fullFilled = false;
-                
+            boolean fullFilled = true;
+            for(int j = 1 ; j <= M ; j++)
+                if(board[N][j] == 0)
+                    fullFilled = false;
+            
 
-                if(fullFilled)
-                    min = Math.min(min, num);
-            }         
+            if(fullFilled)
+                min = Math.min(min, num);                    
         }
 
         System.out.println(min == (int)1e9 ? -1 : min);
