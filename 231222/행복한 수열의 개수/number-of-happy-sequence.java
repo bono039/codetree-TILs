@@ -14,11 +14,6 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        if(N == 1 && M == 1) {
-            System.out.println(2);
-            return;
-        }
-
         map = new int[N][N];
         for(int i = 0 ; i < N ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
@@ -29,10 +24,10 @@ public class Main {
 
         // 행복한 행 구하기
         for(int i = 0 ; i < N ; i++) {
-            int tmp = 1;
+            int tmp = 0;
             int beforeVal = map[i][0];
 
-            for(int j = 1 ; j < N ; j++) {
+            for(int j = 0 ; j < N ; j++) {
                 if(map[i][j] == beforeVal) {
                     tmp++;
                 }
@@ -51,10 +46,10 @@ public class Main {
 
         // 행복한 열 구하기
         for(int i = 0 ; i < N ; i++) {
-            int tmp = 1;
+            int tmp = 0;
             int beforeVal = map[0][i];
 
-            for(int j = 1 ; j < N ; j++) {
+            for(int j = 0 ; j < N ; j++) {
                 if(map[j][i] == beforeVal) {
                     tmp++;
                 }
