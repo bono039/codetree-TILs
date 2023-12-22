@@ -24,7 +24,6 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= M ; j++) {
                 board[i][j] = Integer.parseInt(st.nextToken());
-                origin[i][j] = board[i][j];
             }
         }
 
