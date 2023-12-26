@@ -19,15 +19,10 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int sum = arr[0];
-        for(int i = 1 ; i < N ; i++) {
-            if(sum + arr[i] >= 0) {
-                sum += arr[i];
-            }
-            else {
-                sum = arr[i];
-            }
-            max = Math.max(max, sum);
+        int sum = 0;
+        for(int i = 0 ; i < N ; i++) {
+            sum = Math.max(sum, 0) + arr[i];
+            max = Math.max(sum, max);
         }
 
         System.out.println(max);
