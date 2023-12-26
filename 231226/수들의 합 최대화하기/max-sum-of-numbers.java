@@ -21,24 +21,23 @@ public class Main {
             }
         }
 
-        // N개 고르기
-        visited = new boolean[N * N];
-        comb(0, 0);
+        visited = new boolean[N];
+        solve(0, 0);
 
         System.out.println(max);
     }
 
-    // N개 조합 뽑는 메소드
-    private static void comb(int curr, int sum) {
-        if(curr == N) {
+    private static void solve(int row, int sum) {
+        if(row == N) {
             max = Math.max(max, sum);
             return;
         }
 
+        // 현재 행에 대해 색칠할 열 선택
         for(int j = 0 ; j < N ; j++) {
             if(!visited[j]) {
                 visited[j] = true;
-                comb(curr + 1, sum + map[curr][j]);
+                solve(row + 1, sum + map[row][j]);
                 visited[j] = false;
             }
         }
