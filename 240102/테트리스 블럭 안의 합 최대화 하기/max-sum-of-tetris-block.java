@@ -30,7 +30,7 @@ public class Main {
         visited = new boolean[N][M];
 
         for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
+            for(int j = 0 ; j < M ; j++) {
                 // 4개 뽑는 dfs
                 visited[i][j] = true;
                 dfs(i, j, 1, map[i][j]);
