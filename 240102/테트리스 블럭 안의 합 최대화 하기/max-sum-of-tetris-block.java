@@ -35,8 +35,6 @@ public class Main {
                 visited[i][j] = true;
                 dfs(i, j, 1, map[i][j]);
                 visited[i][j] = false;
-
-                comb(0, 0, i, j, map[i][j]);    // 인접한 4칸 중 3칸 고르기 (ㅗ,ㅓ,ㅏ,ㅜ 모양)
             }
         }
 
@@ -55,25 +53,15 @@ public class Main {
 
             if(!inRange(nr, nc) || visited[nr][nc])    continue;
 
+            // ㅗ 만들기 위해 2번째 칸에서 탐색 한 번 더 진행
+            if(depth == 2) {
+                visited[nr][nc] = true;
+                dfs(r, c, depth + 1, sum + map[nr][nc]);
+            }
+
             visited[nr][nc] = true;
             dfs(nr, nc, depth + 1, sum + map[nr][nc]);
             visited[nr][nc] = false;
-        }
-    }
-
-    private static void comb(int start, int depth, int r, int c, int sum) {
-        if(depth == 3) {
-            max = Math.max(max, sum);
-            return;
-        }
-
-        for(int d = start ; d < 4 ; d++) {
-            int nr = r + dx[d];
-            int nc = c + dy[d];
-
-            if(!inRange(nr, nc))    continue;
-
-            comb(d + 1, depth + 1, r, c, sum + map[nr][nc]);
         }
     }
 
