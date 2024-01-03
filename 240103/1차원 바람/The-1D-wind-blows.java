@@ -15,7 +15,6 @@ public class Main {
         Q = Integer.parseInt(st.nextToken());
 
         map = new int[N + 1][M + 1];
-
         for(int i = 1 ; i <= N ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= M ; j++) {
@@ -40,7 +39,6 @@ public class Main {
 
         visited[r] = true;
 
-        // 해당 줄 바람 불기
         if(d == 'L') {
             int val = map[r][M];
 
@@ -51,18 +49,15 @@ public class Main {
             map[r][1] = val;
 
             boolean isSame1 = false;
+            boolean isSame2 = false;
+
             for(int i = 1 ; i <= M ; i++) {
                 if(((r - 1) >= 1) && map[r][i] == map[r - 1][i]) {
                     isSame1 = true;
-                    break;
                 }
-            }
 
-            boolean isSame2 = false;
-            for(int i = 1 ; i <= M ; i++) {
                 if(((r + 1) <= N) && map[r][i] == map[r + 1][i]) {
                     isSame2 = true;
-                    break;
                 }
             }
 
@@ -78,19 +73,16 @@ public class Main {
 
             map[r][M] = val;
 
-                        boolean isSame1 = false;
+            boolean isSame1 = false;
+            boolean isSame2 = false;
+
             for(int i = 1 ; i <= M ; i++) {
                 if(((r - 1) >= 1) && map[r][i] == map[r - 1][i]) {
                     isSame1 = true;
-                    break;
                 }
-            }
 
-            boolean isSame2 = false;
-            for(int i = 1 ; i <= M ; i++) {
                 if(((r + 1) <= N) && map[r][i] == map[r + 1][i]) {
                     isSame2 = true;
-                    break;
                 }
             }
 
@@ -98,7 +90,7 @@ public class Main {
             if(isSame2) wind(r + 1, 'L');    
         }      
     }
-
+    
     private static void print() {
         StringBuilder sb = new StringBuilder();
         for(int i = 1;  i <= N ; i++) {
