@@ -39,6 +39,7 @@ public class Main {
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < M; j++) {
                     if (map[i][j] > k && !visited[i][j]) {
+                        visited[i][j] = true;
                         cnt++;
                         dfs(i, j, k);
                     }
@@ -55,14 +56,14 @@ public class Main {
     }
 
     private static void dfs(int x, int y, int v) {
-        visited[x][y] = true;
-
         for (int d = 0; d < 4; d++) {
             int nx = x + dx[d];
             int ny = y + dy[d];
 
             if (!inRange(nx, ny) || visited[nx][ny] || map[nx][ny] <= v) continue;
 
+            
+            visited[nx][ny] = true;
             dfs(nx, ny, v);
         }
     }
