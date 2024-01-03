@@ -28,7 +28,7 @@ public class Main {
             }
         }
 
-        for (int k = 0 ; k <= 100; k++) {
+        for (int k = 1 ; k <= 100; k++) {
             visited = new boolean[N][M];
             int cnt = 0;
 
@@ -42,7 +42,7 @@ public class Main {
                 }
             }
 
-            if(cnt >= ans) {
+            if(cnt > ans) {
                 ans = cnt;
                 K = k;
             }
