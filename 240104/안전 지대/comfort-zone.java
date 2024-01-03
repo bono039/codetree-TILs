@@ -9,9 +9,7 @@ public class Main {
     static int[][] map;
     static boolean[][] visited;
 
-    static int max = 0;
-    static int min = 100;
-    static int K;
+    static int K = 100;
     static int ans = 0;
 
     public static void main(String[] args) throws IOException {
@@ -27,14 +25,10 @@ public class Main {
             st = new StringTokenizer(br.readLine(), " ");
             for (int j = 0; j < M; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
-                max = Math.max(max, map[i][j]);
-                min = Math.min(min, map[i][j]);
             }
         }
 
-        K = max;
-
-        for (int k = min ; k <= max; k++) {
+        for (int k = 0 ; k <= 100; k++) {
             visited = new boolean[N][M];
             int cnt = 0;
 
@@ -48,7 +42,7 @@ public class Main {
                 }
             }
 
-            if(cnt > ans) {
+            if(cnt >= ans) {
                 ans = cnt;
                 K = k;
             }
