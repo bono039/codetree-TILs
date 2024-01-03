@@ -10,7 +10,7 @@ public class Main {
     static boolean[][] visited;
 
     static int max = 0;
-    static int K = 1;
+    static int K;
     static int ans = 0;
 
     public static void main(String[] args) throws IOException {
@@ -30,7 +30,9 @@ public class Main {
             }
         }
 
-        for (int k = 1; k <= max; k++) {
+        K = max;
+
+        for (int k = 0; k <= max; k++) {
             visited = new boolean[N][M];
             int cnt = 0;
 
@@ -43,9 +45,9 @@ public class Main {
                 }
             }
 
-            if(cnt > ans) {
+            if(cnt >= ans) {
                 ans = cnt;
-                K = Math.max(K, k);
+                K = k;
             }
         }
 
