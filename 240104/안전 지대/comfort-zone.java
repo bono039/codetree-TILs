@@ -48,7 +48,7 @@ public class Main {
             }
         }
 
-        System.out.println(ans + " " + K);
+        System.out.println(K + " " + ans);
     }
 
     private static void dfs(int x, int y, int v) {
