@@ -23,12 +23,15 @@ public class Main {
             }
         }
 
-        String[] str = br.readLine().split(" ");
-        int r = Integer.parseInt(str[0]);   // 바람에 영향 받는 행 번호
-        char d = str[1].charAt(0);          // 바람이 불어오는 방향
+        while(Q --> 0) {
+            String[] str = br.readLine().split(" ");
+            int r = Integer.parseInt(str[0]);   // 바람에 영향 받는 행 번호
+            char d = str[1].charAt(0);          // 바람이 불어오는 방향
 
-        visited = new boolean[N + 1];
-        wind(r, d);
+            visited = new boolean[N + 1];
+            wind(r, d);
+        }
+
         print();
     }
 
