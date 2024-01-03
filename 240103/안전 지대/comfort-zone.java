@@ -45,7 +45,7 @@ public class Main {
 
             if(cnt > ans) {
                 ans = cnt;
-                K = Math.min(K, k);
+                K = Math.max(K, k);
             }
         }
 
