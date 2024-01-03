@@ -10,6 +10,7 @@ public class Main {
     static boolean[][] visited;
 
     static int max = 0;
+    static int min = 100;
     static int K;
     static int ans = 0;
 
@@ -27,12 +28,13 @@ public class Main {
             for (int j = 0; j < M; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
                 max = Math.max(max, map[i][j]);
+                min = Math.min(min, map[i][j]);
             }
         }
 
         K = max;
 
-        for (int k = 0; k <= max; k++) {
+        for (int k = min ; k <= max; k++) {
             visited = new boolean[N][M];
             int cnt = 0;
 
