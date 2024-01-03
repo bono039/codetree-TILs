@@ -9,8 +9,8 @@ public class Main {
     static int[][] map;
     static boolean[][] visited;
 
-    static int K = 100;
-    static int ans = 0;
+    static int maxZoneNum = -1;
+    static int K = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,13 +42,13 @@ public class Main {
                 }
             }
 
-            if(cnt > ans) {
-                ans = cnt;
+            if(cnt > maxZoneNum) {
+                maxZoneNum = cnt;
                 K = k;
             }
         }
 
-        System.out.println(K + " " + ans);
+        System.out.println(K + " " + maxZoneNum);
     }
 
     private static void dfs(int x, int y, int v) {
