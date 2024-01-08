@@ -25,22 +25,35 @@ public class Main {
 
         while(M --> 0) {
             for(int k = 1 ; k <= N * N ; k++) {
-                for(int i = 0 ; i < N ; i++) {
-                    for(int j = 0 ; j < N ; j++) {
-                        if(grid[i][j] == k) {
-                            change(i, j);
-                        }
-                    }
-                }
+                int[] pos = findPos(k);
+                int[] nextPos = findNextPos(pos);
+                swap(pos, nextPos);
             }
         }
 
         print();
     }
 
-    private static void change(int x, int y) {
-        int[] pos = new int[2]; // 가장 큰 숫자가 있는 칸의 위치
-        int max = 0;
+    // 해당 숫자 위치 찾는 메소드
+    private static int[] findPos(int x) {
+        for(int i = 0 ; i < N ; i++) {
+            for(int j = 0 ; j < N ; j++) {
+                if(grid[i][j] == x) {
+                    return new int[] {i, j};
+                }
+            }
+        }
+
+        return new int[] {0, 0};
+    }
+
+    // 해당 숫자의 8방향 탐색
+    private static int[] findNextPos(int[] arr) {
+        int x = arr[0];
+        int y = arr[1];
+
+        int[] pos = new int[2];
+        int max = -1;
 
         for(int d = 0 ; d < 8 ; d++) {
             int nx = x + dx[d];
@@ -52,12 +65,19 @@ public class Main {
             }
         }
 
-        // swap
-        int tmp = grid[pos[0]][pos[1]];
-        grid[pos[0]][pos[1]] = grid[x][y];
-        grid[x][y] = tmp;
+        return pos;
+    }
 
-        return;
+    private static void swap(int[] arr1, int[] arr2) {
+        int x = arr1[0];
+        int y = arr1[1];
+
+        int nx = arr2[0];
+        int ny = arr2[1];
+
+        int tmp = grid[x][y];
+        grid[x][y] = grid[nx][ny];
+        grid[nx][ny] = tmp;
     }
 
     private static boolean inRange(int x, int y) {
