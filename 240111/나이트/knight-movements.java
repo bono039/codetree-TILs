@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[] dx = {-1, -2, -2, -1, 1, 2, 1, 2};
-    static int[] dy = {-2, -1, 1, 2,-2, -1, 1, 2};
+    static int[] dx = {-1, -2, -2, -1, 1, 2, 2, 1};
+    static int[] dy = {-2, -1, 1, 2, -2, -1, 1, 2};
 
     static int N;
     static int[][] grid, visited;
@@ -32,7 +32,7 @@ public class Main {
         visited[r1][c1] = 1;
         bfs(r1, c1);
 
-        System.out.println(visited[r2][c2] == 0 ? -1 : visited[r2][c2]);
+        System.out.println(visited[r2][c2] == 0 ? -1 : visited[r2][c2] - 1);
     }
 
     private static void bfs(int x, int y) {
