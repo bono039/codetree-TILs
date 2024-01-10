@@ -23,10 +23,16 @@ public class Main {
         r2 = Integer.parseInt(st.nextToken());
         c2 = Integer.parseInt(st.nextToken());
 
+        if(r1 == r2 && c1 == c2) {
+            System.out.println(0);
+            return;
+        }
+
         visited = new int[N + 1][N + 1];
+        visited[r1][c1] = 1;
         bfs(r1, c1);
 
-        System.out.println(visited[r2][c2] == 0 ? -1 : visited[r2][c2] + 1);
+        System.out.println(visited[r2][c2] == 0 ? -1 : visited[r2][c2]);
     }
 
     private static void bfs(int x, int y) {
