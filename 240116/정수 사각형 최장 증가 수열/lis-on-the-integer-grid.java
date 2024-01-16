@@ -7,6 +7,7 @@ public class Main {
 
     static int N;
     static int[][] grid, dp;
+    static int answer = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,46 +18,39 @@ public class Main {
         grid = new int[N][N];
         dp = new int[N][N];
 
+        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(o1[2], o2[2]));
+
         for(int i = 0 ; i < N ; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
+            Arrays.fill(dp[i], 1);
+
+            st = new StringTokenizer(br.readLine(), " ");            
             for(int j = 0 ; j < N ; j++) {
                 grid[i][j] = Integer.parseInt(st.nextToken());
-                dp[i][j] = 1;
+                pq.offer(new int[] {i, j, grid[i][j]});
             }
         }        
 
-        for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
-                bfs(i, j);
-            }
-        }
-
-        int max = 0;
-        for(int[] i : dp) {
-            for(int j : i) {
-                max = Math.max(max, j);
-            }
-        }
-
-        System.out.println(max);
-    }
-
-    private static void bfs(int x, int y) {
-        Queue<int[]> q = new ArrayDeque<>();
-        q.add(new int[] {x, y});
-
-        while(!q.isEmpty()) {
-            int[] now = q.poll();
+        while(!pq.isEmpty()) {
+            int[] now = pq.poll();
+            int x = now[0];
+            int y = now[1];
+            int num = now[2];
 
             for(int d = 0 ; d < 4 ; d++) {
-                int nx = now[0] + dx[d];
-                int ny = now[1] + dy[d];
+                int nx = x + dx[d];
+                int ny = y + dy[d];
 
-                if(!inRange(nx, ny) || grid[nx][ny] <= grid[now[0]][now[1]])    continue;
+                if(!inRange(nx, ny))    continue;
 
-                dp[nx][ny] = Math.max(dp[nx][ny], dp[x][y] + 1);
+                if(num < grid[nx][ny]) {
+                    dp[nx][ny] = Math.max(dp[nx][ny], dp[x][y] + 1);
+                }
             }
+
+            answer = Math.max(answer, dp[x][y]);
         }
+
+        System.out.println(answer);
     }
 
     private static boolean inRange(int x, int y) {
