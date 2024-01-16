@@ -6,22 +6,18 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int[] dp = new int[N + 1];
-
-        if(N == 2) {
-            System.out.println(2);
-            return;
-        }
-        if(N == 3) {
-            System.out.println(5);
-            return;
-        }
         
-        dp[2] = 2;
-        dp[3] = 5;
+        int[] dp = new int[N + 1];
+        dp[0] = 1;
+        dp[1] = 1;
 
-        for(int i = 4 ; i <= N ; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+        for(int i = 2 ; i <= N ; i++) {
+            int sum = 0;
+            
+            for(int j = 0 ; j < i ; j++) {
+                sum += dp[j] * dp[i - j - 1];
+            }
+            dp[i] = sum;
         }
 
         System.out.println(dp[N]);
