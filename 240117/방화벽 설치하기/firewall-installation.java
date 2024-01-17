@@ -10,8 +10,8 @@ public class Main {
     static boolean[][] visited;
 
     static int[][] copy;
-    static List<int[]> wallList = new ArrayList<>();
-    static List<int[]> tmpWallList = new ArrayList<>();    // 방화벽 설치할 위치 3개 조합 리스트
+    static List<int[]> realWalls = new ArrayList<>();
+    static List<int[]> tmpWalls = new ArrayList<>();    // 방화벽 설치할 위치 3개 조합 리스트
     static List<int[]> fireList = new ArrayList<>();
 
     static int max = 0; // 불이 퍼지지 않는 영역 크기의 최댓값
@@ -32,7 +32,7 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
                 copy[i][j] = map[i][j];
 
-                if(map[i][j] == 0)  wallList.add(new int[]{i, j});
+                if(map[i][j] == 0)  tmpWalls.add(new int[]{i, j});
                 if(map[i][j] == 2)  fireList.add(new int[]{i, j});
             }
         }
@@ -54,7 +54,7 @@ public class Main {
             }
         }
 
-        for(int[] w : wallList) {
+        for(int[] w : realWalls) {
             tmpMap[w[0]][w[1]] = 1;
         }
 
@@ -69,7 +69,7 @@ public class Main {
                     int nx = cur[0] + dx[d];
                     int ny = cur[1] + dy[d];
 
-                    if(nx < 0 || nx > N || ny < 0 || ny > M)    continue;
+                    if(nx < 0 || nx >= N || ny < 0 || ny >= M)    continue;
 
                     if(tmpMap[nx][ny] == 0) {
                         tmpMap[nx][ny] = 2;
@@ -96,14 +96,13 @@ public class Main {
     private static void dfs(int idx, int cnt) {
         if(cnt == 3) {
             max = Math.max(max, fire());
-            intialize();
             return;
         }
 
-        for(int i = idx ; i < tmpWallList.size() ; i++) {
-            wallList.add(tmpWallList.get(i));
-            dfs(idx + 1, cnt + 1);
-            wallList.remove(wallList.size() - 1);
+        for(int i = idx ; i < tmpWalls.size() ; i++) {
+            realWalls.add(new int[] {tmpWalls.get(i)[0], tmpWalls.get(i)[1]});
+            dfs(i + 1, cnt + 1);
+            realWalls.remove(realWalls.size() - 1);
         }
     }
 }
