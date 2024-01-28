@@ -2,107 +2,112 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int[] dx = {-1, 1, 0, 0};
-    static int[] dy = {0, 0, -1, 1};
+    
+    static int [] dy = {-1,1,0,0};
+    static int [] dx = {0,0,-1,1};
 
-    static int N, K, M;
+    static int n, m, k;
+    static int[][] map;
+    static ArrayList<int[]> rockList = new ArrayList<>();   // 돌 리스트
 
-    static int[][] grid;
-    static List<int[]> rocks = new ArrayList<>();   // 돌 위치 기록 리스트
-    static List<int[]> chosenRocks = new ArrayList<>();
+    // dfs용
+    static int[] res;  // 고른 돌 목록
+    static boolean[][] v;
 
-    static int max = 0;     // 방문 가능한 칸 수
+    static int[][] startPos;   // 시작점 위치
 
-    public static void main(String[] args) throws IOException {
+    static int max = 0;
+
+    public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        N = Integer.parseInt(st.nextToken());   // 격자 크기
-        K = Integer.parseInt(st.nextToken());   // 시작점 수
-        M = Integer.parseInt(st.nextToken());   // 치워야 할 돌 개수
+        n = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
-        grid = new int[N+1][N+1];
-        for(int i = 1 ; i <= N ; i++) {
+        res = new int[m];
+        map = new int[n][n];
+        startPos = new int[k][2];
+
+        for(int i = 0 ; i < n ; i++){
             st = new StringTokenizer(br.readLine(), " ");
-            for(int j = 1 ; j <= N ; j++) {
-                grid[i][j] = Integer.parseInt(st.nextToken());
+            for(int j = 0 ; j < n ; j++){
+                map[i][j] = Integer.parseInt(st.nextToken());
 
-                if(grid[i][j] == 1) {
-                    rocks.add(new int[] {i, j});
+                if(map[i][j] == 1){
+                    rockList.add(new int[]{i , j});
                 }
             }
         }
 
-        while(K --> 0) {
+        for(int i = 0 ; i < k ; i++){
             st = new StringTokenizer(br.readLine(), " ");
-            int r = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken()); 
-
-            grid[r][c] = 2; // 시작점 기록           
+            startPos[i][0] = Integer.parseInt(st.nextToken()) - 1;
+            startPos[i][1] = Integer.parseInt(st.nextToken()) - 1;
         }
 
-        combination(0);
-        System.out.println(max);
+        dfs(0, 0);
+        System.out.print(max);
     }
+    static void dfs(int cur, int depth){
+        if(depth == m){
+            // 돌 제거하기
+            for(int r : res){
+                int[] pos = rockList.get(r);
+                map[pos[0]][pos[1]] = 0;
+            }
 
-    private static void combination(int depth) {
-        if(depth == M) {
-            max = Math.max(max, bfs());
+            v = new boolean[n][n];
+            int sum = 0;
+
+            for(int[] pos : startPos){
+                if(v[pos[0]][pos[1]]) continue;
+                sum += bfs(pos[0], pos[1]);
+            }
+
+            max = Math.max(sum, max);
+
+            // 원상복구하기
+            for(int r : res){
+                int[] pos = rockList.get(r);
+                map[pos[0]][pos[1]] = 1;
+            }
+
             return;
         }
 
-        for(int i = 0 ; i < rocks.size() ; i++) {
-            chosenRocks.add(rocks.get(i));
-            combination(depth + 1);
-            chosenRocks.remove(chosenRocks.size() - 1);
+        for(int i = cur ; i < rockList.size() ; i++) {
+            res[depth] = i;
+            dfs(i + 1, depth + 1);
         }
     }
 
-    private static int bfs() {
-        Queue<int[]> q = new ArrayDeque<>();
+    static int bfs(int x, int y){
+        Queue<int []> queue = new ArrayDeque<>();
+        queue.add(new int[]{x, y});
+        
+        v[x][y] = true;
+        int cnt = 1;
 
-        int[][] newGrid = new int[N+1][N+1];
-        for(int i = 1 ; i <= N ; i++) {
-            for(int j = 1 ; j <= N ; j++) {
-                newGrid[i][j] = grid[i][j];
+        while(!queue.isEmpty()){
+            int [] now = queue.poll();
 
-                if(newGrid[i][j] == 2) {    // 시작점 큐에 삽입
-                    q.add(new int[] {i, j});
-                }
-            }
-        }
-
-        // 돌 치우기
-        for(int i = 0 ; i < chosenRocks.size() ; i++) {
-            newGrid[chosenRocks.get(i)[0]][chosenRocks.get(i)[1]] = 0;
-        }
-
-        while(!q.isEmpty()) {
-            int[] now = q.poll();
-
-            for(int d = 0 ; d < 4 ; d++) {
+            for(int d = 0 ; d < 4 ; d++){
                 int nx = now[0] + dx[d];
                 int ny = now[1] + dy[d];
 
-                if(inRange(nx, ny) && newGrid[nx][ny] == 0) {
-                    q.add(new int[]{nx, ny});
-                    newGrid[nx][ny] = 2;
-                }
+                if(OOB(nx, ny) || v[nx][ny] || map[nx][ny] == 1) continue;
+                cnt++;
+                v[nx][ny] = true;
+                queue.add(new int[]{nx, ny});
             }
         }
-
-        int cnt = 0;
-        for(int i = 1 ; i <= N ; i++) {
-            for(int j = 1 ; j <= N ; j++) {
-                if(newGrid[i][j] == 2) {
-                    cnt++;
-                }
-            }
-        }
+        
         return cnt;
     }
 
-    private static boolean inRange(int x, int y) {
-        return (1 <= x && x <= N && 1 <= y && y <= N);
+    static boolean OOB(int y, int x){
+        return y >= n || y < 0 || x >= n || x < 0;
     }
 }
