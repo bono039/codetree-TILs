@@ -66,11 +66,14 @@ public class Main {
             return;
         }
 
-        for(int i = idx ; i < cities.length ; i++) {
-            list.add(i);
-            comb(i + 1, depth + 1);
-            list.remove(list.size() - 1);
-        }
+        if(idx == n*n)
+            return;
+
+        list.add(idx);
+        comb(idx + 1, depth + 1);
+        list.remove(list.size() - 1);
+
+        comb(idx + 1, depth);
     }
 
     private static void bfs(int x, int y) {
