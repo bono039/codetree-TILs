@@ -49,18 +49,17 @@ public class Main {
 
     private static void comb(int idx, int depth) {
         if(depth == k) {
+            initialize();
+
             for(int i = 0 ; i < list.size() ; i++) {
                 int num = list.get(i);
                 int x = cities[num][0];
                 int y = cities[num][1];
 
-                if(visited[x][y])   continue;
                 bfs(x, y);
             }
 
-            max = Math.max(max, getCnt());
-
-            initialize();
+            max = Math.max(max, getCnt());            
             return;
         }
 
