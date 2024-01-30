@@ -45,6 +45,8 @@ public class Main {
         comb(1, 0);
 
         System.out.println(max);
+
+        System.out.println();
     }
 
     private static void comb(int idx, int depth) {
@@ -56,6 +58,7 @@ public class Main {
                 int x = cities[num][0];
                 int y = cities[num][1];
 
+                if(visited[x][y])   continue;
                 bfs(x, y);
             }
 
@@ -63,7 +66,7 @@ public class Main {
             return;
         }
 
-        for(int i = idx ; i <= n * n ; i++) {
+        for(int i = idx ; i < cities.length ; i++) {
             list.add(i);
             comb(i + 1, depth + 1);
             list.remove(list.size() - 1);
