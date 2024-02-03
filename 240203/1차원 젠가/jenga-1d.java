@@ -3,9 +3,9 @@ import java.io.*;
 
 public class Main {
     static int n;
-    static int[] arr, tmp;
+    static int[] arr;
 
-    static int endOfArr, endOfTmpArr;
+    static int endOfArr;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +25,6 @@ public class Main {
             int s = Integer.parseInt(st.nextToken());
             int e = Integer.parseInt(st.nextToken());
 
-            endOfTmpArr = 0;
             deleteBlocks(s - 1, e - 1);
         }
 
@@ -39,23 +38,23 @@ public class Main {
     }
 
     private static void deleteBlocks(int s, int e) {
-        tmp = new int[endOfArr];
+        int[] tmp = new int[endOfArr];
+        int endOfTmpArr = 0;
 
         // 1) (s,e) 범위의 블록 제거하기
         for(int i = 0 ; i < endOfArr ; i++) {
             if(s <= i && i <= e)    continue;
 
-            if(arr[i] != 0) {
-                tmp[endOfTmpArr] = arr[i];
-                endOfTmpArr++;
-            }
+            tmp[endOfTmpArr] = arr[i];
+            endOfTmpArr++;
+
         }
 
         // 2) 원본 배열에 적용하기
-        endOfArr = endOfTmpArr;
-
-        for(int i = 0 ; i < endOfArr ; i++) {
+        for(int i = 0 ; i < endOfTmpArr ; i++) {
             arr[i] = tmp[i];
         }
+        
+        endOfArr = endOfTmpArr;
     }
 }
