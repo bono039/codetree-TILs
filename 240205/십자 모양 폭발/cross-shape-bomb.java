@@ -2,74 +2,79 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int n, r, c, size;
+    static int n;
     static int[][] grid;
-
-    public static void main(String[] args) throws IOException {
+    
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-
         n = Integer.parseInt(br.readLine());
         grid = new int[n][n];
 
-        for(int i = 0 ; i < n ; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            for(int j = 0 ; j < n ; j++) {
+        StringTokenizer st;
+        for(int i = 0; i < n; i++){
+            st = new StringTokenizer(br.readLine());
+            for(int j = 0; j < n; j++){
                 grid[i][j] = Integer.parseInt(st.nextToken());
             }
+        } 
+
+        st = new StringTokenizer(br.readLine());
+        int r = Integer.parseInt(st.nextToken()) - 1;
+        int c = Integer.parseInt(st.nextToken()) - 1;
+        
+        //1. 제거
+        pop(r, c);
+
+        //2. 중력 적용하기
+        for(int i = 0; i < n; i++){
+            down(i);
         }
 
-        st = new StringTokenizer(br.readLine(), " ");
-        r = Integer.parseInt(st.nextToken());
-        c = Integer.parseInt(st.nextToken());
-        r--; c--;
-
-        size = grid[r][c];
-
-        pop();
-
-        int[][] tmp = new int[n][n];
-        for(int col = 0 ; col < n ; col++) {
-            int tmpRow = n - 1;
-            for(int row = n - 1 ; row >= 0 ; row--) {
-                if(grid[row][col] != 0) {
-                    tmp[tmpRow][col] = grid[row][col];
-                    tmpRow--;
-                }
-            }
-        }
-
-        for(int i = 0 ; i < n ; i++) {
-            for(int j = 0 ; j < n ; j++) {
-                grid[i][j] = tmp[i][j];
-            }
-        }
-
-        print();
+        print();        
     }
 
-    private static void pop() {
-        for(int i = 0 ; i < n ; i++) {
-            for(int j = 0 ; j < n ; j++) {
-                if(inBombRange(i, j)) {
-                    grid[i][j] = 0;
-                }
+    public static void down(int c){
+        int[] temp = new int[n];
+        int idx = n-1;
+
+        //1. temp 배열에 복사
+        for(int i = n-1; i >= 0; i--){
+            if(grid[i][c] != 0){
+                temp[idx--] = grid[i][c];
             }
+        }
+
+        //2. grid에 값 넣기
+        for(int i = 0; i < n; i++){
+            grid[i][c] = temp[i];
         }
     }
 
-    private static boolean inBombRange(int x, int y) {
-        return (x == r || y == c) &&
-                Math.abs(x - r) + Math.abs(y - c) < size;
+    public static void pop(int r, int c){
+        int[][] dist = {{0, 0}, {-1, 0}, {1, 0}, {0, -1}, {0, 1}}; //자신, 상하좌우
+        int target = grid[r][c]; //범위
+
+        for(int k = 0; k < target; k++){
+            for(int i = 0; i < dist.length; i++) {
+                int nx = r + dist[i][0] * k;
+                int ny = c + dist[i][1] * k;
+
+                if(nx < 0 || nx >= n || ny < 0 || ny >= n)  continue;   // 범위 확인
+                grid[nx][ny] = 0;
+            }
+        }
     }
 
     private static void print() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i < n ; i++) {
-            for(int j = 0 ; j < n ; j++)
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
                 sb.append(grid[i][j]).append(" ");
+            }
             sb.append("\n");
         }
-        System.out.println(sb);
+
+        System.out.println(sb.toString());
     }
 }
