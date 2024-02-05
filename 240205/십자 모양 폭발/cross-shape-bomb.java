@@ -2,79 +2,78 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    static int n;
+    static int[] dx = {-1,1,0,0};
+    static int[] dy = {0,0,-1,1};
+
+    static int n, r, c, size;
     static int[][] grid;
-    
-    public static void main(String[] args) throws IOException{
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+
         n = Integer.parseInt(br.readLine());
         grid = new int[n][n];
 
-        StringTokenizer st;
-        for(int i = 0; i < n; i++){
-            st = new StringTokenizer(br.readLine());
-            for(int j = 0; j < n; j++){
+        for(int i = 0 ; i < n ; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            for(int j = 0 ; j < n ; j++) {
                 grid[i][j] = Integer.parseInt(st.nextToken());
             }
-        } 
-
-        st = new StringTokenizer(br.readLine());
-        int r = Integer.parseInt(st.nextToken()) - 1;
-        int c = Integer.parseInt(st.nextToken()) - 1;
-        
-        //1. 제거
-        pop(r, c);
-
-        //2. 중력 적용하기
-        for(int i = 0; i < n; i++){
-            down(i);
         }
 
-        print();        
-    }
+        st = new StringTokenizer(br.readLine(), " ");
+        r = Integer.parseInt(st.nextToken()) - 1;
+        c = Integer.parseInt(st.nextToken()) - 1;
+        size = grid[r][c];
 
-    public static void down(int c){
-        int[] temp = new int[n];
-        int idx = n-1;
+        // 1) 터뜨리기
+        pop();
 
-        //1. temp 배열에 복사
-        for(int i = n-1; i >= 0; i--){
-            if(grid[i][c] != 0){
-                temp[idx--] = grid[i][c];
+        // 2) 중력 적용하기
+        // 아래에서 위로 올라오면서 채우기
+        int[][] tmp = new int[n][n];
+        for(int col = 0 ; col < n ; col++) {
+            int tmpRow = n - 1;
+            for(int row = n - 1 ; row >= 0 ; row--) {
+                if(grid[row][col] != 0) {
+                    tmp[tmpRow][col] = grid[row][col];
+                    tmpRow--;
+                }
             }
         }
 
-        //2. grid에 값 넣기
-        for(int i = 0; i < n; i++){
-            grid[i][c] = temp[i];
+        // 3) 원본 배열로 다시 copy하기
+        for(int i = 0 ; i < n ; i++) {
+            for(int j = 0 ; j < n ; j++) {
+                grid[i][j] = tmp[i][j];
+            }
         }
+
+        // 결과 출력하기
+        print();
     }
 
-    public static void pop(int r, int c){
-        int[][] dist = {{0, 0}, {-1, 0}, {1, 0}, {0, -1}, {0, 1}}; //자신, 상하좌우
-        int target = grid[r][c]; //범위
+    // 십자 모양의 크기, 선택된 숫자에 비례하여 커지기
+    private static void pop() {
+        for(int dir = 0 ; dir < 4 ; dir++) {
+            for(int i = 0 ; i < size ; i++) {
+                int nr = r + dx[dir] * i;
+                int nc = c + dy[dir] * i;
 
-        for(int k = 0; k < target; k++){
-            for(int i = 0; i < dist.length; i++) {
-                int nx = r + dist[i][0] * k;
-                int ny = c + dist[i][1] * k;
-
-                if(nx < 0 || nx >= n || ny < 0 || ny >= n)  continue;   // 범위 확인
-                grid[nx][ny] = 0;
+                if(nr < 0 || nr >= n || nc < 0 || nc >= n)  continue;
+                grid[nr][nc] = 0;
             }
         }
     }
 
     private static void print() {
         StringBuilder sb = new StringBuilder();
-
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
+        for(int i = 0 ; i < n ; i++) {
+            for(int j = 0 ; j < n ; j++)
                 sb.append(grid[i][j]).append(" ");
-            }
             sb.append("\n");
         }
-
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }
