@@ -8,7 +8,6 @@ public class Main {
     static int n,k;
     static int[][] map, ans;
 
-    static List<int[]> posList = new ArrayList<>(); // 귤 리스트
     static Queue<int[]> q = new ArrayDeque<>();
 
     public static void main(String[] args) throws IOException {
@@ -19,8 +18,6 @@ public class Main {
         k = Integer.parseInt(st.nextToken());
 
         map = new int[n][n];
-
-        // 0 : nothing, 1 : 귤 , 2 : 상한 귤
         for(int i = 0 ; i < n ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 0 ; j < n ; j++) {
@@ -63,7 +60,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < n ; i++) {
             for(int j = 0 ; j < n ; j++) {
-                if(map[i][j] == 0 && ans[i][j] == 0) ans[i][j] = -1;
+                if(map[i][j] == 0) ans[i][j] = -1;
                 if(map[i][j] == 1 && ans[i][j] == 0) ans[i][j] = -2;
                 sb.append(ans[i][j]).append(" ");
             }
