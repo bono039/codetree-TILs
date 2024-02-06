@@ -15,9 +15,9 @@ public class Main {
 
         map = new int[n][n];
         for(int i = 0 ; i < n ; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            for(int j = 0 ; j < m ; j++) {
-                map[i][j] = Integer.parseInt(st.nextToken());
+            String[] str = br.readLine().split(" ");
+            for(int j = 0 ; j < n ; j++) {
+                map[i][j] = Integer.parseInt(str[j]);
             }
         }
 
