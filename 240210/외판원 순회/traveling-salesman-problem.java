@@ -32,13 +32,13 @@ public class Main {
 
     private static void solve(int cnt) {
         if(cnt == n) {
-            if(A[list.get(list.size() - 1)][1] != 0)
+            if(A[list.get(cnt - 1)][1] != 0)
                 min = Math.min(min, getSum());
             return;
         }
 
         for(int i = 1 ; i <= n ; i++) {
-            if(!visited[i] && A[list.get(list.size() - 1)][i] != 0) {
+            if(!visited[i] && A[list.get(cnt - 1)][i] != 0) {
                 visited[i] = true;
                 list.add(i);
 
