@@ -37,7 +37,7 @@ public class Main {
         }
 
         for(int i = 1 ; i <= n ; i++) {
-            if(!visited[i]) {
+            if(!visited[i] && A[list.get(list.size() - 1)][i] != 0) {
                 visited[i] = true;
                 list.add(i);
 
@@ -45,7 +45,6 @@ public class Main {
 
                 visited[i] = false;
                 list.remove(list.size() - 1);
-
             }
         }        
     }
