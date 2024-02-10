@@ -32,7 +32,8 @@ public class Main {
 
     private static void solve(int cnt) {
         if(cnt == n) {
-            min = Math.min(min, getSum());
+            if(A[list.get(list.size() - 1)][1] != 0)
+                min = Math.min(min, getSum());
             return;
         }
 
