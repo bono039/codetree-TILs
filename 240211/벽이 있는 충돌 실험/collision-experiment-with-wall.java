@@ -31,9 +31,9 @@ public class Main {
 
                 int dir = 0;
                 if(d == 'U')    dir = 0;
-                else if(d == 'D')   dir = 1;
-                else if(d == 'R')   dir = 2;
-                else if(d == 'L')   dir = 3;
+                else if(d == 'R')   dir = 1;
+                else if(d == 'L')   dir = 2;
+                else if(d == 'D')   dir = 3;
 
                 marbles.add(new Marble(x, y, dir));
             }
