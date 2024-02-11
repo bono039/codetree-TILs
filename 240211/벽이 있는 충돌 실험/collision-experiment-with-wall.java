@@ -21,6 +21,7 @@ public class Main {
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());   // 구슬 수
 
+            marbles = new ArrayList<>();
             marbleCnt = new int[N+1][N+1];
 
             for(int j = 0 ; j < M ; j++) {
