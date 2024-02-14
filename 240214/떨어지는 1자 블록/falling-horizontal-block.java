@@ -15,6 +15,11 @@ public class Main {
 
         grid = new int[n+1][n+1];
 
+        if(m == 1 && n == 1 && k == 1) {
+            System.out.println(1);
+            return;
+        }
+
         for(int i = 1 ; i <= n ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= n ; j++) {
@@ -24,13 +29,18 @@ public class Main {
 
         int row = 1;
         while(true) {
-            if(row == n) break;
+            if(row == n) {
+                if(!allZero(row)) {
+                    putBlocks(row - 1);
+                }
+                break;
+            }
 
             if(allZero(row)) {
                 row++;
             }
-            else {
-                putBlocks(row-1);   // 바로 윗 줄에 블록들 두기
+            else {                
+                putBlocks(row - 1);   // 바로 윗 줄에 블록들 두기
                 break;
             }
         }
@@ -39,7 +49,7 @@ public class Main {
     }
 
     private static boolean allZero(int row) {
-        for(int col = k ; col < k + m && col <= n ; col++) {
+        for(int col = k ; col < k + m ; col++) {
             if(grid[row][col] != 0)
                 return false;
         }
@@ -48,7 +58,7 @@ public class Main {
     }
 
     private static void putBlocks(int row) {
-        for(int col = k ; col < k + m && col <= n ; col++) {
+        for(int col = k ; col < k + m ; col++) {
             grid[row][col] = 1;
         }
     }
