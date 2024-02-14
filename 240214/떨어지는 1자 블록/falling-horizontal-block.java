@@ -14,7 +14,6 @@ public class Main {
         k = Integer.parseInt(st.nextToken());   // 블록 떨어질 위치
 
         grid = new int[n+1][n+1];
-
         for(int i = 1 ; i <= n ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= n ; j++) {
@@ -22,25 +21,23 @@ public class Main {
             }
         }
 
-        int row = 1;
-        while(true) {
-            if(row == n) {
-                if(!allZero(row))   putBlocks(row - 1);
-                else                putBlocks(row);
+        // 1. 최종적으로 멈추게 될 위치를 구한다.
+        int targetRow = getTargetRow(); 
+        
+        // 2. 최종 위치에 전부 블록을 표시한다.
+        putBlocks(targetRow);
 
-                break;
-            }
-
-            if(allZero(row)) {
-                row++;
-            }
-            else {                
-                putBlocks(row - 1);   // 바로 윗 줄에 블록들 두기
-                break;
-            }
-        }
-
+        // 3. 출력한다.
         print();
+    }
+    
+    private static int getTargetRow() {
+        for(int row = 1 ; row <= n ; row++) {
+            if(!allZero(row))
+                return row - 1;
+        }
+        
+        return n;
     }
 
     // 모두 0인지 확인하는 메서드
