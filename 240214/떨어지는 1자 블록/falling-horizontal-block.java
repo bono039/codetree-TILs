@@ -33,6 +33,9 @@ public class Main {
                 if(!allZero(row)) {
                     putBlocks(row - 1);
                 }
+                else {
+                    putBlocks(row);
+                }
                 break;
             }
 
