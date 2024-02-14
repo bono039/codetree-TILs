@@ -15,11 +15,6 @@ public class Main {
 
         grid = new int[n+1][n+1];
 
-        if(m == 1 && n == 1 && k == 1) {
-            System.out.println(1);
-            return;
-        }
-
         for(int i = 1 ; i <= n ; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j = 1 ; j <= n ; j++) {
@@ -30,12 +25,9 @@ public class Main {
         int row = 1;
         while(true) {
             if(row == n) {
-                if(!allZero(row)) {
-                    putBlocks(row - 1);
-                }
-                else {
-                    putBlocks(row);
-                }
+                if(!allZero(row))   putBlocks(row - 1);
+                else                putBlocks(row);
+
                 break;
             }
 
@@ -51,6 +43,7 @@ public class Main {
         print();
     }
 
+    // 모두 0인지 확인하는 메서드
     private static boolean allZero(int row) {
         for(int col = k ; col < k + m ; col++) {
             if(grid[row][col] != 0)
@@ -60,12 +53,14 @@ public class Main {
         return true;
     }
 
+    // 블럭 두는 메서드
     private static void putBlocks(int row) {
         for(int col = k ; col < k + m ; col++) {
             grid[row][col] = 1;
         }
     }
 
+    // 출력 메서드
     private static void print() {
         StringBuilder sb = new StringBuilder();
         for(int i = 1 ; i <= n ; i++) {
