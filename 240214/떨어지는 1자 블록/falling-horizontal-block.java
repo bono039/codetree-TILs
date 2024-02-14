@@ -24,6 +24,8 @@ public class Main {
 
         int row = 1;
         while(true) {
+            if(row == n) break;
+
             if(allZero(row)) {
                 row++;
             }
@@ -50,7 +52,6 @@ public class Main {
             grid[row][col] = 1;
         }
     }
-
 
     private static void print() {
         StringBuilder sb = new StringBuilder();
