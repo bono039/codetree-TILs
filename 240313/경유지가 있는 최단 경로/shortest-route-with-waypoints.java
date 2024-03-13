@@ -23,15 +23,11 @@ public class Main {
         dp = new int[N][M];
         dp[0][0] = map[0][0];
         for(int i = 1 ; i < M ; i++) {
-            if(map[0][i] == 1) {
-                dp[0][i] = dp[0][i-1] + 1;
-            }
+            dp[0][i] = dp[0][i-1] + map[0][i];
         }
 
         for(int i = 1 ; i < N ; i++) {
-            if(map[i][0] == 1) {
-                dp[i][0] = dp[i-1][0] + 1;
-            }
+            dp[i][0] = dp[i-1][0] + map[i][0];
         }
 
         for(int i = 1 ; i < N ; i++) {
